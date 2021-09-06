@@ -1,107 +1,88 @@
 ﻿@page
 @model Razor.Practica2.Pages.NominaModel
-@{
-    /// CALCULO AFP
+@{ /// CALCULO AFP
 
-    double AFP(double x)
-    {
-        double CALCULO_AFP;
-        CALCULO_AFP = x * 0.0287;
-        if (CALCULO_AFP >= 269640)
-        {
-            CALCULO_AFP = 7738.67;
-        }
-        else
-        {
-
-            return CALCULO_AFP;
-        }
-
-        return CALCULO_AFP;
-    }
-    /// CALCULO ARS
-    double ARS(double x)
-    {
-        Double CALCULO_ARS;
-
-        if (x > 134820)
-        {
-            CALCULO_ARS = 4098.53;
-            return CALCULO_ARS;
-        }
-        else
-        {
-            CALCULO_ARS = x * 0.0304;
-            return CALCULO_ARS;
-        }
-    }
-
-
-
-    /// CALCULO SUMAR
-    Double suma(double x, double y, double c)
-    {
-        return x + y + c;
-    }
-    /// CALCULO Restar
-    Double Restar(double x, double y, double c, double d)
-    {
-        return x - y - c - d;
-
-    }
-
-    //CALCULO IRS
-    double IRS(double calculo_irs)
-    {
-        double x;
-        if (calculo_irs >= 72260.25)
-        {
-            x = (((calculo_irs - 72260.25) *0.25) + 6648);
-            return x;
-        }
-        else
-        {
-            if(calculo_irs >=52027.42)
-            {
-                x = (((calculo_irs - 52027.42) * 0.20) + 2601.33);
-                return x;
-            }
-            else
-            {
-
-                if(calculo_irs >= 34685)
+                double AFP(double x)
                 {
-                    x = ((calculo_irs - 34685)*0.15);
-                    return x;
+                    double CALCULO_AFP;
+                    CALCULO_AFP = x * 0.0287;
+                    if (CALCULO_AFP >= 269640)
+                    {
+                        CALCULO_AFP = 7738.67;
+                    }
+                    else
+                    {
+
+                        return CALCULO_AFP;
+                    }
+
+                    return CALCULO_AFP;
                 }
-                else
+                /// CALCULO ARS
+                double ARS(double x)
                 {
-                    x = 0;
-                    return x;
+                    Double CALCULO_ARS;
+
+                    if (x > 134820)
+                    {
+                        CALCULO_ARS = 4098.53;
+                        return CALCULO_ARS;
+                    }
+                    else
+                    {
+                        CALCULO_ARS = x * 0.0304;
+                        return CALCULO_ARS;
+                    }
                 }
 
-            }
-        }
-    }
 
 
-}
+                /// CALCULO SUMAR
+                Double suma(double x, double y, double c)
+                {
+                    return x + y + c;
+                }
+                /// CALCULO Restar
+                Double Restar(double x, double y, double c, double d)
+                {
+                    return x - y - c - d;
 
+                }
 
+                //CALCULO IRS
+                double IRS(double calculo_irs)
+                {
+                    double x;
+                    if (calculo_irs >= 72260.25)
+                    {
+                        x = (((calculo_irs - 72260.25) * 0.25) + 6648);
+                        return x;
+                    }
+                    else
+                    {
+                        if (calculo_irs >= 52027.42)
+                        {
+                            x = (((calculo_irs - 52027.42) * 0.20) + 2601.33);
+                            return x;
+                        }
+                        else
+                        {
 
-    
+                            if (calculo_irs >= 34685)
+                            {
+                                x = ((calculo_irs - 34685) * 0.15);
+                                return x;
+                            }
+                            else
+                            {
+                                x = 0;
+                                return x;
+                            }
 
-
-
-
-
-
-
-
-
-
+                        }
+                    }
+                } }
 <body>
-
     <h1>Nomina</h1>
     <table border="1">
 
@@ -117,76 +98,20 @@
             <th scope="col">Salario Neto</th>
 
         </tr>
-
-        <tr>
-            <td>@Model.Nombres_empleado1</td>
-            <td>@Model.Apellidos_empleado1</td>
-            <td>@Model.cargo_empleado1</td>
-            <td>@Model.salario_mensual_empleado1</td>
-            <td>@AFP(Double.Parse(@Model.salario_mensual_empleado1))</td>
-            <td>@ARS(Double.Parse(@Model.salario_mensual_empleado1))</td>
-            <td>@IRS(@Restar(Double.Parse(@Model.salario_mensual_empleado1), @AFP(Double.Parse(@Model.salario_mensual_empleado1)), @ARS(Double.Parse(@Model.salario_mensual_empleado1)),(0)))</td>
-            <td>@suma(@AFP(Double.Parse(@Model.salario_mensual_empleado1)), @ARS(Double.Parse(@Model.salario_mensual_empleado1)), @IRS(@Restar(Double.Parse(@Model.salario_mensual_empleado1), @AFP(Double.Parse(@Model.salario_mensual_empleado1)), @ARS(Double.Parse(@Model.salario_mensual_empleado1)),(0))))</td>
-            <td>@Restar(Double.Parse(@Model.salario_mensual_empleado1), @AFP(Double.Parse(@Model.salario_mensual_empleado1)), @ARS(Double.Parse(@Model.salario_mensual_empleado1)), @IRS(@Restar(Double.Parse(@Model.salario_mensual_empleado1), @AFP(Double.Parse(@Model.salario_mensual_empleado1)), @ARS(Double.Parse(@Model.salario_mensual_empleado1)), (0)))) </td>
-
-        </tr>
-
-        <tr>
-            <td>@Model.Nombres_empleado2</td>
-            <td>@Model.Apellidos_empleado2</td>
-            <td>@Model.cargo_empleado2</td>
-            <td>@Model.salario_mensual_empleado2</td>
-            <td>@AFP(Double.Parse(@Model.salario_mensual_empleado2))</td>
-            <td>@ARS(Double.Parse(@Model.salario_mensual_empleado2))</td>
-            <td>@IRS(@Restar(Double.Parse(@Model.salario_mensual_empleado2), @AFP(Double.Parse(@Model.salario_mensual_empleado2)), @ARS(Double.Parse(@Model.salario_mensual_empleado2)), (0)))</td>
-            <td>@suma(@AFP(Double.Parse(@Model.salario_mensual_empleado2)), @ARS(Double.Parse(@Model.salario_mensual_empleado2)), @IRS(@Restar(Double.Parse(@Model.salario_mensual_empleado2), @AFP(Double.Parse(@Model.salario_mensual_empleado2)), @ARS(Double.Parse(@Model.salario_mensual_empleado2)), (0))))</td>
-            <td>@Restar(Double.Parse(@Model.salario_mensual_empleado2), @AFP(Double.Parse(@Model.salario_mensual_empleado2)), @ARS(Double.Parse(@Model.salario_mensual_empleado2)), @IRS(@Restar(Double.Parse(@Model.salario_mensual_empleado2), @AFP(Double.Parse(@Model.salario_mensual_empleado2)), @ARS(Double.Parse(@Model.salario_mensual_empleado2)), (0)))) </td>
-        </tr>
-
-        <tr>
-            <td>@Model.Nombres_empleado3</td>
-            <td>@Model.Apellidos_empleado3</td>
-            <td>@Model.cargo_empleado3</td>
-            <td>@Model.salario_mensual_empleado3</td>
-            <td>@AFP(Double.Parse(@Model.salario_mensual_empleado3))</td>
-            <td>@ARS(Double.Parse(@Model.salario_mensual_empleado3))</td>
-            <td>@IRS(@Restar(Double.Parse(@Model.salario_mensual_empleado3), @AFP(Double.Parse(@Model.salario_mensual_empleado3)), @ARS(Double.Parse(@Model.salario_mensual_empleado3)), (0)))</td>
-            <td>@suma(@AFP(Double.Parse(@Model.salario_mensual_empleado3)), @ARS(Double.Parse(@Model.salario_mensual_empleado3)), @IRS(@Restar(Double.Parse(@Model.salario_mensual_empleado3), @AFP(Double.Parse(@Model.salario_mensual_empleado3)), @ARS(Double.Parse(@Model.salario_mensual_empleado3)), (0))))</td>
-            <td>@Restar(Double.Parse(@Model.salario_mensual_empleado3), @AFP(Double.Parse(@Model.salario_mensual_empleado3)), @ARS(Double.Parse(@Model.salario_mensual_empleado3)), @IRS(@Restar(Double.Parse(@Model.salario_mensual_empleado3), @AFP(Double.Parse(@Model.salario_mensual_empleado3)), @ARS(Double.Parse(@Model.salario_mensual_empleado3)), (0)))) </td>
-                    </tr>
-        <tr>
-            <td>@Model.Nombres_empleado4</td>
-            <td>@Model.Apellidos_empleado4</td>
-            <td>@Model.cargo_empleado4</td>
-            <td>@Model.salario_mensual_empleado4</td>
-            <td>@AFP(Double.Parse(@Model.salario_mensual_empleado4))</td>
-            <td>@ARS(Double.Parse(@Model.salario_mensual_empleado4))</td>
-            <td>@IRS(@Restar(Double.Parse(@Model.salario_mensual_empleado4), @AFP(Double.Parse(@Model.salario_mensual_empleado4)), @ARS(Double.Parse(@Model.salario_mensual_empleado4)), (0)))</td>
-            <td>@suma(@AFP(Double.Parse(@Model.salario_mensual_empleado4)), @ARS(Double.Parse(@Model.salario_mensual_empleado4)), @IRS(@Restar(Double.Parse(@Model.salario_mensual_empleado4), @AFP(Double.Parse(@Model.salario_mensual_empleado4)), @ARS(Double.Parse(@Model.salario_mensual_empleado4)), (0))))</td>
-            <td>@Restar(Double.Parse(@Model.salario_mensual_empleado4), @AFP(Double.Parse(@Model.salario_mensual_empleado4)), @ARS(Double.Parse(@Model.salario_mensual_empleado4)), @IRS(@Restar(Double.Parse(@Model.salario_mensual_empleado4), @AFP(Double.Parse(@Model.salario_mensual_empleado4)), @ARS(Double.Parse(@Model.salario_mensual_empleado4)), (0)))) </td>
-        </tr>
-        <tr>
-            <td>@Model.Nombres_empleado5</td>
-            <td>@Model.Apellidos_empleado5</td>
-            <td>@Model.cargo_empleado5</td>
-            <td>@Model.salario_mensual_empleado5</td>
-            <td>@AFP(Double.Parse(@Model.salario_mensual_empleado5))</td>
-            <td>@ARS(Double.Parse(@Model.salario_mensual_empleado5))</td>
-            <td>@IRS(@Restar(Double.Parse(@Model.salario_mensual_empleado5), @AFP(Double.Parse(@Model.salario_mensual_empleado5)), @ARS(Double.Parse(@Model.salario_mensual_empleado5)), (0)))</td>
-            <td>@suma(@AFP(Double.Parse(@Model.salario_mensual_empleado5)), @ARS(Double.Parse(@Model.salario_mensual_empleado5)), @IRS(@Restar(Double.Parse(@Model.salario_mensual_empleado5), @AFP(Double.Parse(@Model.salario_mensual_empleado5)), @ARS(Double.Parse(@Model.salario_mensual_empleado5)), (0))))</td>
-            <td>@Restar(Double.Parse(@Model.salario_mensual_empleado5), @AFP(Double.Parse(@Model.salario_mensual_empleado5)), @ARS(Double.Parse(@Model.salario_mensual_empleado5)), @IRS(@Restar(Double.Parse(@Model.salario_mensual_empleado5), @AFP(Double.Parse(@Model.salario_mensual_empleado5)), @ARS(Double.Parse(@Model.salario_mensual_empleado5)), (0)))) </td>
-        </tr>
-        <tr>
-            <td>@Model.Nombres_empleado6</td>
-            <td>@Model.Apellidos_empleado6</td>
-            <td>@Model.cargo_empleado6</td>
-            <td>@Model.salario_mensual_empleado6</td>
-            <td>@AFP(Double.Parse(@Model.salario_mensual_empleado6))</td>
-            <td>@ARS(Double.Parse(@Model.salario_mensual_empleado6))</td>
-            <td>@IRS(@Restar(Double.Parse(@Model.salario_mensual_empleado6), @AFP(Double.Parse(@Model.salario_mensual_empleado6)), @ARS(Double.Parse(@Model.salario_mensual_empleado6)), (0)))</td>
-            <td>@suma(@AFP(Double.Parse(@Model.salario_mensual_empleado6)), @ARS(Double.Parse(@Model.salario_mensual_empleado6)), @IRS(@Restar(Double.Parse(@Model.salario_mensual_empleado6), @AFP(Double.Parse(@Model.salario_mensual_empleado6)), @ARS(Double.Parse(@Model.salario_mensual_empleado6)), (0))))</td>
-            <td>@Restar(Double.Parse(@Model.salario_mensual_empleado6), @AFP(Double.Parse(@Model.salario_mensual_empleado6)), @ARS(Double.Parse(@Model.salario_mensual_empleado6)), @IRS(@Restar(Double.Parse(@Model.salario_mensual_empleado6), @AFP(Double.Parse(@Model.salario_mensual_empleado6)), @ARS(Double.Parse(@Model.salario_mensual_empleado6)), (0)))) </td>
-        </tr>
+        @foreach (var empleado in Model.Empleados)
+        {
+            <tr>
+                <td>@empleado.Nombres_empleado</td>
+                <td>@empleado.Apellidos_empleado</td>
+                <td>@empleado.Cargo_empleado</td>
+                <td>@empleado.Salario_mensual_empleado</td>
+                <td>@AFP(Double.Parse(@empleado.Salario_mensual_empleado))</td>
+                <td>@ARS(Double.Parse(@empleado.Salario_mensual_empleado))</td>
+                <td>@IRS(@Restar(Double.Parse(@empleado.Salario_mensual_empleado), @AFP(Double.Parse(@empleado.Salario_mensual_empleado)), @ARS(Double.Parse(@empleado.Salario_mensual_empleado)), (0)))</td>
+                <td>@suma(@AFP(Double.Parse(@empleado.Salario_mensual_empleado)), @ARS(Double.Parse(@empleado.Salario_mensual_empleado)), @IRS(@Restar(Double.Parse(@empleado.Salario_mensual_empleado), @AFP(Double.Parse(@empleado.Salario_mensual_empleado)), @ARS(Double.Parse(@empleado.Salario_mensual_empleado)), (0))))</td>
+                <td>@Restar(Double.Parse(@empleado.Salario_mensual_empleado), @AFP(Double.Parse(@empleado.Salario_mensual_empleado)), @ARS(Double.Parse(@empleado.Salario_mensual_empleado)), @IRS(@Restar(Double.Parse(@empleado.Salario_mensual_empleado), @AFP(Double.Parse(@empleado.Salario_mensual_empleado)), @ARS(Double.Parse(@empleado.Salario_mensual_empleado)), (0)))) </td>
+            </tr>
+        }
 
     </table>
 
